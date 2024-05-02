@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Text Highlighter with SweetAlert",
+    "version": "1.0",
+    "description": "Highlight text on web pages and use SweetAlert",
+    "permissions": ["activeTab"],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon.png",
+            "48": "icons/icon.png",
+            "128": "icons/icon.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js", "sw.min.js"]
+            
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["sw.min.js"],
+            "matches": ["<all_urls>"]
+        }
+    ]
+}
