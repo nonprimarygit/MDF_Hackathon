@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Text Highlighter with SweetAlert",
+    "name": "GARCHO - Fact Checker",
     "version": "1.0",
     "description": "Highlight text on web pages and use SweetAlert",
     "permissions": ["activeTab"],
@@ -13,7 +13,7 @@
         }
     },
     "background": {
-        "service_worker": "background.js"
+        "scripts": ["background.js"]
     },
     "content_scripts": [
         {

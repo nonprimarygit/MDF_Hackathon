@@ -1,11 +1,8 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "highlightText") {
-        chrome.scripting.executeScript({
-            target: { tabId: sender.tab.id },
-            func: highlightText,
-        }, results => {
-            sendResponse(results);
-        });
+        browser.tabs.executeScript(sender.tab.id, {
+            code: `(${highlightText.toString()})();`
+        }).then(sendResponse);
         return true;  // Indicates the response is sent asynchronously
     }
 });

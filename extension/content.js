@@ -183,10 +183,10 @@ document.addEventListener('click', (event) => {
         let contentType = 'text';
         let contentData;
 
-        if (event.target instanceof HTMLParagraphElement) {
-            const p = event.target.closest('p');
-            contentData = p ? p.textContent : '';
-            highlightText(event.target);
+        if (event.target.closest('p, span, div, a, h1, h2, h3, h4, h5, h6')) {
+            let textElement = event.target.closest('p, span, div, a, h1, h2, h3, h4, h5, h6');
+            contentData = textElement ? textElement.textContent : '';
+            highlightText(textElement);
         } else if (event.target.tagName.match(/^H[1-6]$/)) {
             const header = event.target;
             contentType = 'text';
@@ -275,34 +275,34 @@ function createInfoWindow(data, url, contentType) {
 
             if (data.type.toLowerCase() === 'true') {
                 contentDiv.style.color = 'green';
-                contentDiv.textContent = 'Information is True';
+                contentDiv.textContent = 'ინფორმაცია სიმართლეა!';
                 sourceDiv.style.color = 'green'
                 reasonDiv.style.color = 'green'
 
                 percentage = Math.floor(Math.random() * (100 - 80 + 1) + 80);
             } else if (data.type.toLowerCase() === 'false') {
                 contentDiv.style.color = 'red';
-                contentDiv.textContent = 'Information is False';
+                contentDiv.textContent = 'ინფორმაცია სიცრუეა!';
                 percentage = Math.floor(Math.random() * (55 - 20 + 1) + 20);
                 sourceDiv.style.color = 'red'
                 reasonDiv.style.color = 'red'
 
             }
 
-            percentageDiv.textContent = `Percentage: ${percentage}%`;
+            percentageDiv.textContent = `ალბათობა: ${percentage}%`;
             contentDiv.appendChild(percentageDiv);
             infoWindow.appendChild(contentDiv);
 
             // Display the source from the API response
             if (data.message) {
-                sourceDiv.textContent = `Message: ${data.message}`;
+                sourceDiv.textContent = `მესიჯი: ${data.message}`;
                 contentDiv.style.marginBottom = '10px';
                 sourceDiv.style.marginTop = '10px';
                 infoWindow.appendChild(sourceDiv);
             }
             
             if (data.reason) {
-                reasonDiv.textContent = `Reason: ${data.reason}`;
+                reasonDiv.textContent = `მიზეზი: ${data.reason}`;
                 reasonDiv.style.marginTop = '10px';
                 infoWindow.appendChild(reasonDiv);
             }
